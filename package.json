@@ -10,5 +10,14 @@
   "license": "ISC",
   "dependencies": {
     "inquirer": "^6.3.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/parth167/professional_readme.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/parth167/professional_readme/issues"
+  },
+  "homepage": "https://github.com/parth167/professional_readme#readme"
 }
