@@ -8,12 +8,12 @@ const questions =[
     {
         type: 'input',
         message: 'Type your GitHub username:',
-        name: 'github'
+        name: 'Github'
     },
     {
         type: 'input',
         message: 'Type your email address:',
-        name: 'email'
+        name: 'Email'
     },
     {
         type: 'input',
@@ -67,17 +67,17 @@ function writeToFile(data) {
 async function getUserInput() {
     let response = await inquirer.prompt(questions);
     if (response) {
-        if(response.License === 'MIT'){
+        if(response.projectLicense === 'MIT'){
             response.badge = '![MIT license](https://img.shields.io/badge/license-MIT-green)';
-            response.licenseurl = 'https://choosealicense.com/licenses/mit/';
+            response.licenseURL = 'https://choosealicense.com/licenses/mit/';
         };
-        if(response.License === 'Apache License 2.0'){
+        if(response.projectLicense === 'Apache License 2.0'){
             response.badge ='![Apache 2.0 license](https://img.shields.io/badge/license-Apache%202.0-blue)';
-            response.licenseurl = 'https://choosealicense.com/licenses/apache-2.0/';
+            response.licenseURL = 'https://choosealicense.com/licenses/apache-2.0/';
         };
-        if(response.License === 'GPL 3'){
+        if(response.projectLicense === 'GPL 3'){
             response.badge ='![GPL 3 license](https://img.shields.io/badge/license-GNU%20GPLv3-brightgreen)';
-            response.licenseurl = 'https://choosealicense.com/licenses/gpl-3.0/';
+            response.licenseURL = 'https://choosealicense.com/licenses/gpl-3.0/';
         };
         writeToFile(generate(response));
     }
