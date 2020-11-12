@@ -4,11 +4,11 @@ const fs = require('fs');
 const generate = require('./utils/generateMarkdown');
 
 // array of questions for user
-const questions = [
+const questions =[
     {
         type: 'input',
         message: 'Type your GitHub username:',
-        name: 'github'
+        name: 'Github'
     },
     {
         type: 'input',
@@ -39,7 +39,7 @@ const questions = [
         type: 'list',
         message: 'Choose a license:',
         name: 'License',
-        choices: ['MIT', 'APACHE 2.0', 'GPL 3.0', 'BSD 3', 'None']
+        choices: ['MIT', 'APACHE 2.0', 'GPL 3.0', 'None']
     },
     {
         type: 'input',
@@ -53,16 +53,40 @@ const questions = [
     },
     
 ];
-
-
 // function to write README file
-function writeToFile(fileName, data) {
-}
+function writeToFile(data) {
+    fs.writeFile(
+        '.READMETEST.md',
+        data,
+        (err) => {
+            if (err) throw err;
+            console.log('File saved!')
+        });
+};
+
+async function getUserInput() {
+    let response = await inquirer.prompt(questions);
+    if (response) {
+        if(response.projectLicense === 'MIT'){
+            response.badge = '![MIT license](https://img.shields.io/badge/license-MIT-green)';
+            response.licenseURL = 'https://choosealicense.com/licenses/mit/';
+        };
+        if(response.projectLicense === 'Apache License 2.0'){
+            response.badge ='![Apache 2.0 license](https://img.shields.io/badge/license-Apache%202.0-blue)';
+            response.licenseURL = 'https://choosealicense.com/licenses/apache-2.0/';
+        };
+        if(response.projectLicense === 'GPL 3'){
+            response.badge ='![GPL 3 license](https://img.shields.io/badge/license-GNU%20GPLv3-brightgreen)';
+            response.licenseURL = 'https://choosealicense.com/licenses/gpl-3.0/';
+        };
+        writeToFile(generate(response));
+    }
+};
 
 // function to initialize program
 function init() {
-
-}
+getUserInput();
+};
 
 // function call to initialize program
 init();
